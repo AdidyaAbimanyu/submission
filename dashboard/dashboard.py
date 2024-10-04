@@ -8,7 +8,9 @@ day_df = pd.read_csv('../data/day.csv')
 # Pertanyaan 1
 filter_holiday = day_df[(day_df['weekday'] >= 1) & (day_df['weekday'] <= 6) & (day_df['holiday'] == 1)]
 average_sales_holiday = filter_holiday['cnt'].mean()
-average_sales_weekday = day_df[day_df['holiday'] == 0]['cnt'].mean()
+
+filter_weekday = day_df[(day_df['weekday'] >= 1) & (day_df['weekday'] <= 6) & (day_df['holiday'] == 0)]
+average_sales_weekday = filter_weekday['cnt'].mean()
 data_q1 = {
     'Jenis Hari': ['Weekday', 'Holiday'],
     'Rata-rata Peminjaman Per Hari': [round(average_sales_weekday, 2), average_sales_holiday]
@@ -16,7 +18,7 @@ data_q1 = {
 visualization_df_q1 = pd.DataFrame(data_q1)
 
 # Pertanyaan 2
-average_sales_casual = day_df['cnt'].mean()
+average_sales_casual = day_df['casual'].mean()
 avarage_sales_registered = day_df['registered'].mean()
 data_q2 = {
     'Jenis Orang': ['Casual', 'Registered'],
@@ -63,7 +65,7 @@ with st.expander('Analisis pertanyaan 2'):
 # Kesimpulan
 st.write('### Kesimpulan')
 st.write('1. Kesimpulan dari pertanyaan pertama adalah rata-rata peminjaman sepeda berdasarkan hari biasa (weekday) lebih tinggi sedikit daripada hari libur (holiday). Ini merupakan suatu hal yang tidak terduga karena hari libur (holiday) jumlahnya sangat sedikit dibandingan hari biasa (weekday).')
-st.write('2. Kemudian kesimpulan kedua adalah rata-rata peminjaman sepeda berdasarkan orang yang tidak memiliki keanggotaan (casual) lebih tinggi daripada yang memiliki keanggotaan (registered).')
+st.write('2. Kemudian kesimpulan kedua adalah rata-rata peminjaman sepeda berdasarkan orang yang memiliki keanggotaan (registered) lebih tinggi daripada yang tidak memiliki keanggotaan (casual).')
 
 # Copyright
 st.caption('Copyright @ Adidya Abimanyu')
