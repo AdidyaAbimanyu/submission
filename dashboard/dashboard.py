@@ -3,7 +3,7 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-day_df = pd.read_csv('../data/day.csv')
+day_df = pd.read_csv('./data/day.csv')
 
 # Pertanyaan 1
 filter_holiday = day_df[(day_df['weekday'] >= 1) & (day_df['weekday'] <= 6) & (day_df['holiday'] == 1)]
